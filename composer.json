@@ -1,0 +1,12 @@
+{
+    "name": "seijiro/twitterlike2evernote",
+    "authors": [
+        {
+            "name": "nora inu",
+            "email": "modeverv@gmail.com"
+        }
+    ],
+    "require": {
+        "evernote/evernote-cloud-sdk-php": "^2.0"
+    }
+}
