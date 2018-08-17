@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.class.php';
+require_once '../config.class.php';
 
 $pdo = new PDO(Config::get('dsn'), Config::get('dbuser'), Config::get('dbpass'));
 $sql = 'select * from twitter';
@@ -12,6 +12,9 @@ if (isset($_REQUEST['tag'])) {
     $sql .= " where tag = ?";
     $array[] = $_REQUEST['tag'];
 }
+
+$sql .= " order by created_at desc";
+
 $sth = $pdo->prepare($sql);
 
 $sth->execute($array);

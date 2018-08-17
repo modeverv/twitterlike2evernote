@@ -5,6 +5,7 @@ CREATE TABLE `twitter` (
   `evernote_set` int(1) DEFAULT NULL,
   `txt` text,
   `created_at` bigint(20) DEFAULT NULL,
+  `tag` varchar(200) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `idx_id_str` (`id_str`),
   KEY `idx_evernote_set` (`evernote_set`)

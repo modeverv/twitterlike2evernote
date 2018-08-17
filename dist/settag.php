@@ -1,6 +1,6 @@
 <?php
 
-require_once 'config.class.php';
+require_once '../config.class.php';
 
 $pdo = new PDO(Config::get('dsn'), Config::get('dbuser'), Config::get('dbpass'));
 $sql = 'update twitter set tag = ? where id_str = ? limit 1';

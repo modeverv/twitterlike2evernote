@@ -2,6 +2,6 @@
 
 cd `dirname $0`
 
-# php ./getTwitter.php
+php ./getTwitter.php
 
 
