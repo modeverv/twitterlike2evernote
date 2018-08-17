@@ -45,9 +45,9 @@ class Twitter
 
     private function is_exists_in_db($tweet_obj): bool
     {
-        $sth = $this->pdo->prepare('select count(*) as cou from twitter where id_str = ?');
-        $sth->execute([$tweet_obj->id]);
-        $result = $sth->fetchAll();
+$sth = $this->pdo->prepare('select count(*) as cou from twitter where id_str = ?');
+$sth->execute([$tweet_obj->id]);
+$result = $sth->fetchAll();
         if ($result[0]["cou"] > 0) {
             return true;
         } else {

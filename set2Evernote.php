@@ -4,6 +4,7 @@ require_once 'config.class.php';
 
 $sandbox = true;
 $china = false;
+echo \Config::get('evernote_token');
 $client = new \Evernote\Client(\Config::get('evernote_token'), $sandbox, null, null, $china);
 // Create the resource
 //$resource = new \Evernote\Model\Resource(

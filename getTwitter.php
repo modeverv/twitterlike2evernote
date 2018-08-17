@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 
 require_once "config.class.php";
-require_once "twitter.class.php";
+
 
 // 設定
 $api_key = Config::get('twitter_api_key');
