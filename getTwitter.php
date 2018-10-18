@@ -9,7 +9,23 @@ $api_key = Config::get('twitter_api_key');
 $api_secret = Config::get('twitter_api_secret');
 $access_token = Config::get('twitter_access_token');
 $access_token_secret = Config::get('twitter_access_token_secret');
-$pdo = new PDO(Config::get('dsn'), Config::get('dbuser'), Config::get('dbpass'));
+try{
+  $pdo = new PDO(Config::get('dsn'), Config::get('dbuser'), Config::get('dbpass'),array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+}catch(Exception $e){
+  var_dump($e->getMessage());
+}
+var_dump($api_key);
+var_dump($api_secret);
+//var_dump(Config::get('dsn'));
+//var_dump(Config::get('dbuser'));
+//var_dump(Config::get('dbpass'));
+//var_dump($pdo);
+//$pdo->prepare("select count(*) as cou from twitter where id_str = '12343'");
+//$sth->execute([$tweet_obj->id]);
+//$result = $sth->fetchAll();
+
+
+//exit();
 
 $request_url = 'https://api.twitter.com/1.1/favorites/list.json'; // エンドポイント
 $request_method = 'GET';
@@ -17,7 +33,7 @@ $request_method = 'GET';
 $params_a = array(
 //    "user_id" => "1528352858",
     "screen_name" => Config::get('twitter_screen_name'),
-    "count" => "100",
+    "count" => "10000",
 //        "since_id" => "643299864344788992",
     //        "max_id" => "643299864344788992",
     "include_entities" => "true",
@@ -119,6 +135,9 @@ $header = substr($res1, 0, $res2['header_size']); // レスポンスヘッダー
 
 // [cURL]ではなく、[file_get_contents()]を使うには下記の通りです…
 // $json = file_get_contents( $request_url , false , stream_context_create( $context ) ) ;
-
+var_dump($header);
+var_dump($api_key);
+var_dump($api_secret);
+var_dump(Config::get('twitter_screen_name'));
 $twitter = new Twitter($json, $pdo);
 $twitter->set_to_db();

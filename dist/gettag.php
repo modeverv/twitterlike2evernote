@@ -18,5 +18,5 @@ foreach ($result as $row){
 
 header('Access-Control-Allow-Origin: *');
 
-echo json_encode($json);
+echo json_encode($json,JSON_PRETTY_PRINT);
 
