@@ -1,16 +1,16 @@
 <?php
 
 require_once '../config.class.php';
+require_once '../parameter.class.php';
 
 $pdo = new PDO(Config::get('dsn'), Config::get('dbuser'), Config::get('dbpass'));
 $sql = 'select * from twitter';
 
-//$sql = "select * from twitter where txt like '%レシピ%'";
-
 $array = [];
-if (isset($_REQUEST['tag'])) {
+$tag = Parameter::getString('tag');
+if (null != $tag) {
     $sql .= " where tag = ?";
-    $array[] = $_REQUEST['tag'];
+    $array[] = $tag;
 }
 
 $sql .= " order by created_at desc";
