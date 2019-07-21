@@ -9,8 +9,12 @@ $sql = 'select * from twitter';
 $array = [];
 $tag = Parameter::getString('tag');
 if (null != $tag) {
-    $sql .= " where tag = ?";
-    $array[] = $tag;
+    if ("::::NULL::::" == $tag) {
+        $sql .= " where tag IS NULL";
+    }else{
+        $sql .= " where tag = ?";
+        $array[] = $tag;
+    }
 }
 
 $sql .= " order by created_at desc";

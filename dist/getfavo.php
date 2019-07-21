@@ -9,11 +9,17 @@ $sql = 'select * from twitter';
 $array = [];
 $tag = Parameter::getString('tag');
 if (null != $tag) {
+    if ($tag = "::::NULL::::") {
+    $sql .= " where tag IS NULL";
+    }else{
     $sql .= " where tag = ?";
     $array[] = $tag;
+    }
 }
 
 $sql .= " order by created_at desc";
+
+//var_dump($sql);exit();
 
 $sth = $pdo->prepare($sql);
 
@@ -28,5 +34,5 @@ foreach ($result as $row) {
 }
 
 header('Access-Control-Allow-Origin: *');
-
+header('content-type: application/json; charset=utf-8');
 echo json_encode($json);
